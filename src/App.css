@@ -1,38 +1,187 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    cursor: pointer;
+    transition: all 0.4s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+header li {
+    @apply px-3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.bg-primary {
+    background-color: gainsboro;
+}
+
+.mobile-nav {
+    @apply fixed top-14 left-0 bg-gray-600 w-full h-1/6;
+}
+
+header li:hover {
+    background-color: aliceblue;
+}
+
+.mobile-nav li {
+    @apply w-full text-center border-b-2;
+}
+
+.bg-secondary {
+    background-color: bisque;
+    height: 100%;
+}
+
+.project-des {
+    @apply absolute left-0 right-0 bottom-0 top-0 bg-yellow-50 opacity-0 duration-500 hover:opacity-100;
+}
+
+.btn {
+    @apply bg-primary px-5 py-2 font-bold hover:border-2 border-blue-50;
+    transform: scale(1);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.box-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bg-gradient {
+    background: linear-gradient(to right, #ff8a00, #da1b60);
+}
+
+.text-animation {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.scale {
+    transform: scale(1.2);
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes welcomeAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-welcome {
+    animation: welcomeAnimation 1s ease-out;
+}
+
+@keyframes outer-left {
+    from {
+      transform: translateX(50%);
+    }
+    to {
+      transform: none;
+    }
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @keyframes inner-left {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: none;
+    }
   }
-  to {
-    transform: rotate(360deg);
+  
+  .cafe,
+  .mozart {
+    animation: outer-left 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both;
+     outline: 1px solid red;
   }
-}
+  
+  [class*='inner'] {
+     outline: 1px solid blue;
+ }
+  
+  .title-inner {
+    display: inline-block;
+    animation: inner-left 1s 1s ease both;
+  }
+  
+  .cafe-inner {
+    display: inline-block;
+    animation: inner-left 1s 1s ease both,
+      text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+  }
+  
+  .mozart-inner {
+    animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+  }
+  
+  .title {
+    animation: outer-left 1s 1s ease both;
+  }
+  
+  .cafe {
+   
+    > .cafe-inner {
+      display: inline-block;
+    }
+  }
+  
+  .mozart {
+    display: inline-block;
+  }
+  
+  .image {
+    grid-row: 1;
+    grid-column: 2;
+    margin-left: -2rem;
+    opacity: 0.7;
+  
+    animation: image-in 1s cubic-bezier(0.5, 0, 0.1, 1) 2s backwards;
+  
+    @keyframes image-in {
+      from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+      to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+  
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  
+  body:active * {
+    animation: none !important;
+  }
+  
